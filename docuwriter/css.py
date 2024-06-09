@@ -1,6 +1,6 @@
 def get_css():
     css = """
-/* Your CSS code for professional documentation goes here */
+/* Documentation Styles */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.5;
@@ -100,6 +100,6 @@ a:hover {
     background: #555;
 }
 
-/* Add more styles as needed */
+/* End of Documentation Styles */
 """
     return css
