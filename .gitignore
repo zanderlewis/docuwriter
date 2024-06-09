@@ -1,3 +1,6 @@
 __pycache__/
 .DS_Store
 *.html
+build/
+dist/
+*.egg-info/

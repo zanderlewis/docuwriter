@@ -4,8 +4,8 @@ from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
 import markdown
-import css
-import js
+from . import css
+from . import js
 from bs4 import BeautifulSoup
 import base64
 
@@ -120,21 +120,21 @@ def convert_md_to_html(md_file, name, icon):
 
     return pretty_html
 
+def main():
+    import argparse
 
-import argparse
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument("input", help="Input markdown file")
+    argparser.add_argument("output", help="Output HTML file")
+    argparser.add_argument(
+        "--name", "-n", help="Documentation Name", default="Documentation"
+    )
+    argparser.add_argument(
+        "--icon", "-i", help="Icon file for the documentation", default=""
+    )
+    args = argparser.parse_args()
 
-argparser = argparse.ArgumentParser()
-argparser.add_argument("input", help="Input markdown file")
-argparser.add_argument("output", help="Output HTML file")
-argparser.add_argument(
-    "--name", "-n", help="Documentation Name", default="Documentation"
-)
-argparser.add_argument(
-    "--icon", "-i", help="Icon file for the documentation", default=""
-)
-args = argparser.parse_args()
+    html_content = convert_md_to_html(args.input, args.name, args.icon)
 
-html_content = convert_md_to_html(args.input, args.name, args.icon)
-
-with open(args.output, "w") as file:
-    file.write(html_content)
+    with open(args.output, "w") as file:
+        file.write(html_content)
